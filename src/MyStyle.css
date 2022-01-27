@@ -1,14 +1,8 @@
-.mystyle{
-    color : white;
-    background-color : rgb(30, 207, 24);
-    padding: "10px";
-    font-family : "Arial"
-  }
 
 body {
-    background-color: #2D3B48;
-    padding: 20px;
-    margin: 0;
+    background-color: #02090f;
+    /* padding: 20px; */
+    margin: 20px;
 }
 .title {
     color: white;
@@ -70,7 +64,6 @@ margin-bottom: 10px;
     background-color: #04AA6D;
     color: white;
 }
-
 
 .profile-img {
     width: 20%;
