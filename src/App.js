@@ -1,12 +1,8 @@
 import React, {Component} from 'react'
-import './MyStyle.css'
-import './undraw_male_avatar_323b.svg' // with import
-import 'bootstrap/dist/css/bootstrap.min.css'
-import NavbarApp from './NavbarApp'
-import ProfileApp from './ProfileApp'
-import ContentArticle from './ContentArticle'
-import FormInputContent from './FormInputContent'
-import FooterApp from './FooterApp'
+import './App.css'
+import BodyComponent from './BodyComponent'
+import Count from './Count'
+import logo from './logo.svg'
 //class
 //function 
 
@@ -17,26 +13,27 @@ import FooterApp from './FooterApp'
 
 // option 2
 class App extends Component{
-
-  getButtonName() {
-    return "Kepencet"  
-  }
-
-  buttonClick = "Click Me";
+  name = "Asep"
+  address = "Bandung"
 
   render(){
-
     return(
-      <>
-      <NavbarApp/>
-      <ProfileApp/>
-      <ContentArticle/>
-      <FormInputContent/>
-      <FooterApp/>
-      </>
+     <div className='App'>
+       <header className='App-header'>
+         <img src={logo} className='App-logo' alt='logo'/>
+       </header>
+       <Count/>
+       {/* <BodyComponent name={this.name} address={this.address}/> 
+       <BodyComponent name="Dadang" address="Jakarta" /> 
+       <BodyComponent name="Dodit" address="Jambi" />  */}
+     </div>
     );
   }
   
 }
+
+
+
+
 
 export default App;
