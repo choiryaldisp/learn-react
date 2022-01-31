@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import logo from './logo.svg'
 // import Count from './Count'
 import Trainees from './Trainees'
+import Clock from './Clock'
 //class
 //function 
 
@@ -38,7 +39,8 @@ class App extends Component{
        <header className='App-header'>
          <img src={logo} className='App-logo' alt='logo'/>
        </header>
-       <Trainees/>
+       <Clock/>
+       {/* <Trainees/> */}
        {/* <h1>{this.state.message}</h1> */}
        {/* <ChildComponent name={"Asep"} callback={this.getMessage}/> */}
        {/* <Count callback={this.getMessage}/> */}
