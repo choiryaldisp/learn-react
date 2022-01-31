@@ -1,4 +1,6 @@
 import { Component } from "react";
+import CounterButtonMinus from "./CounterButtonMinus";
+import CounterButtonPlus from "./CounterButtonPlus";
 
 class Count extends Component{
     constructor(props){
@@ -8,38 +10,21 @@ class Count extends Component{
         }
     }
 
-    // increament(){
-    //     // set state berguna untuk melakukan memanipulasi state
-    //     // set state maka akan terjadi re-render component
-    //     console.log('increament', this);
-    //     this.setState({ 
-    //         number : this.state.number +1
-    //     })
-    // }
-
-    increament=()=>{
-        // set state berguna untuk melakukan memanipulasi state
-        // set state maka akan terjadi re-render component
-        console.log('increament', this);
-        this.setState({ 
-            number : this.state.number + 1
-        })
+    sendPropsCallback = () => {
+        this.props.callback(this.number)
     }
 
-    decreament(){
-        console.log('decreament', this);
-        if (this.state.number>0){
-            this.setState({
-                number : this.state.number -1
-            })
-        }
+    updateStateNumber = (updatedNumber) =>{
+        this.setState({
+            number : updatedNumber
+        })
     }
 
     // Ketika menggunakan function biasa, 
     // kita menggunakan binding untuk mengikat this yang kita kirimkan menjadi this function tersebut
     // ketika kita menggunakn arrow function akan mengambil this dari induknya 
     render(){
-        console.log('count', this);
+
         return(
             <div>
                 <h1>{this.state.number}</h1>
@@ -49,7 +34,6 @@ class Count extends Component{
                 - Function biasa memiliki 'this' sendiri
                 - Arrow function tidak memiliki this sendiri
                 - jadi pada saat function increament dipanggil harus di binding terlebih dahulu
-
 
                 */}
                 {/* <button onClick={this.increament.bind(this)}>+</button> */}
@@ -62,8 +46,9 @@ class Count extends Component{
                     <button onClick={this.increament()}>+</button> ==> akan mengeksekusi pada saat re-rendering atau pada saat melakukan event
                 */}
 
-                <button onClick={this.increament}>+</button>
-                <button onClick={this.decreament.bind(this)}>-</button>
+                <CounterButtonPlus callback = {this.updateStateNumber} value = {this.state.number}/>
+                <CounterButtonMinus callback = {this.updateStateNumber} value = {this.state.number} />
+                {/* <button onClick={this.decreament.bind(this)}>-</button> */}
             </div>
         )
     }

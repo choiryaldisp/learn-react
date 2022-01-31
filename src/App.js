@@ -1,8 +1,12 @@
 import React, {Component} from 'react'
 import './App.css'
-import BodyComponent from './BodyComponent'
-import Count from './Count'
+import 'bootstrap/dist/css/bootstrap.min.css'
+// import BodyComponent from './BodyComponent'
+// import ChildComponent from './ChildComponent'
+// import Count from './Count'
 import logo from './logo.svg'
+// import Count from './Count'
+import Trainees from './Trainees'
 //class
 //function 
 
@@ -13,8 +17,20 @@ import logo from './logo.svg'
 
 // option 2
 class App extends Component{
-  name = "Asep"
-  address = "Bandung"
+  constructor(props){
+    super(props)
+
+    this.state = {
+      message : ''
+    }
+  }
+
+  getMessage = (msg) => {
+    this.setState({
+      message : msg
+    })
+  }
+
 
   render(){
     return(
@@ -22,10 +38,10 @@ class App extends Component{
        <header className='App-header'>
          <img src={logo} className='App-logo' alt='logo'/>
        </header>
-       <Count/>
-       {/* <BodyComponent name={this.name} address={this.address}/> 
-       <BodyComponent name="Dadang" address="Jakarta" /> 
-       <BodyComponent name="Dodit" address="Jambi" />  */}
+       <Trainees/>
+       {/* <h1>{this.state.message}</h1> */}
+       {/* <ChildComponent name={"Asep"} callback={this.getMessage}/> */}
+       {/* <Count callback={this.getMessage}/> */}
      </div>
     );
   }
