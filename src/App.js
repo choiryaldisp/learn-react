@@ -6,8 +6,9 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 // import Count from './Count'
 import logo from './logo.svg'
 // import Count from './Count'
-import Trainees from './Trainees'
-import Clock from './Clock'
+// import Trainees from './Trainees'
+// import Clock from './Clock'
+import ListOfTrainee from './ListOfTrainee'
 //class
 //function 
 
@@ -35,16 +36,26 @@ class App extends Component{
 
   render(){
     return(
-     <div className='App'>
-       <header className='App-header'>
-         <img src={logo} className='App-logo' alt='logo'/>
-       </header>
-       <Clock/>
-       {/* <Trainees/> */}
-       {/* <h1>{this.state.message}</h1> */}
-       {/* <ChildComponent name={"Asep"} callback={this.getMessage}/> */}
-       {/* <Count callback={this.getMessage}/> */}
-     </div>
+      <div>
+        <header className='App-header'>
+          <img src={logo} className='App-logo' alt='logo'/>
+        </header>
+        <div className='container'><br/>
+          <ListOfTrainee/>
+        </div>
+      </div>
+      
+    //  <div className='App'>
+    //    <header className='App-header'>
+    //      <img src={logo} className='App-logo' alt='logo'/>
+    //    </header>
+    //    <ListOfTrainee/>
+    //    {/* <Clock/> */}
+    //    {/* <Trainees/> */}
+    //    {/* <h1>{this.state.message}</h1> */}
+    //    {/* <ChildComponent name={"Asep"} callback={this.getMessage}/> */}
+    //    {/* <Count callback={this.getMessage}/> */}
+    //  </div>
     );
   }
   

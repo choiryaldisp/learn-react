@@ -14,7 +14,7 @@ class Clock extends Component{
         console.log("ComponentDidMount called");
         // boleh melakukan setState
         // function ini akan terpanggil ketika komponen sudah terbentuk/ ready
-        // dan terpanggil setalah render
+        // dan terpanggil setelah render
 
         this.timerID = setInterval(
             ()=> this.tick(), 1000 // akan memanggil function tick() setiap 1000ms
