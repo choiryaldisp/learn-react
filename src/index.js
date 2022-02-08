@@ -11,14 +11,8 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-const name = "Rian"
-const element = <h1>{sayWelcome(name)}</h1>
 
-function sayWelcome(name){
-  return "Welcome "+ name
-}
-
-ReactDOM.render(element, document.getElementById('example'))
+ReactDOM.render(document.getElementById('example'))
 
 
 // If you want to start measuring performance in your app, pass a function

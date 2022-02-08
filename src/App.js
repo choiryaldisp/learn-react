@@ -1,35 +1,44 @@
 import logo from './logo.svg';
 import './App.css';
+import {Component, createContext} from 'react';
+import FirstCounter from './FirstCounter';
+import SecondCounter from './SecondCounter';
 
-function App() {
-  const name = "Jeremy"
-  function getButtonText(){
-    return "Click Me"
+export const RootContext = createContext();
+const Provider = RootContext.Provider;
+
+class App extends Component{
+
+  state = {
+    globalNumber: 0
   }
-  const buttonName = {text : "Click Me"}
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1>Welcome {name}</h1>
-        <label htmlFor="name">Enter Name</label>
-        <input id ='name' type="text"/>
-        <button>{getButtonText()}</button>
-        <button>{buttonName.text}</button>
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+  dispatch = (action)=>{
+    if(action.type === "PLUS"){
+      this.setState({globalNumber : this.state.globalNumber + 1})
+    }else if (action.type === "MINUS"){
+      this.setState({globalNumber : this.state.globalNumber - 1})
+    }
+  }
+
+  render(){
+    return(
+      <Provider value={{state: this.state, dispatch: this.dispatch}}>
+        <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          </header>
+
+          <div className='container'>
+            <h1>{this.state.globalNumber}</h1>
+            <FirstCounter/>
+            <SecondCounter/>
+          </div>
+        </div>
+      </Provider>
+    )
+  }
 }
+
 
 export default App;
