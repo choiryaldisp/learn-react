@@ -1,34 +1,36 @@
-import React, {Component} from 'react'
+import { useState } from 'react';
 import './App.css'
-import BodyComponent from './BodyComponent'
-import Count from './Count'
+import ButtonDecrement from './ButtonDecrement';
+import ButtonIncrement from './ButtonIncrement';
 import logo from './logo.svg'
-//class
-//function 
 
-// option 1
-// class App extends React.Component{
+function App(){
 
-// }
+  const [number, setNumber] = useState(0)
 
-// option 2
-class App extends Component{
-  name = "Asep"
-  address = "Bandung"
-
-  render(){
-    return(
-     <div className='App'>
-       <header className='App-header'>
-         <img src={logo} className='App-logo' alt='logo'/>
-       </header>
-       <Count/>
-       {/* <BodyComponent name={this.name} address={this.address}/> 
-       <BodyComponent name="Dadang" address="Jakarta" /> 
-       <BodyComponent name="Dodit" address="Jambi" />  */}
-     </div>
-    );
+  const increment = ()=>{
+    setNumber(number+1)
   }
+
+  const decrement = ()=>{
+    if (number>0){
+      setNumber(number-1)
+    }
+  }
+
+  return(
+    <div className='App'>
+      <header className='App-header'>
+        <img src={logo} className='App-logo' alt='logo'/>
+      </header>
+      <h1>{number}</h1>
+      <button className='btn' onClick={increment}>+</button>
+      <button className='btn' onClick={decrement}>-</button>
+      <br/><br/>
+      <ButtonIncrement number={number} callIncrement={increment}/>
+      <ButtonDecrement number={number} callDecrement={decrement}/>
+    </div>
+  );
   
 }
 
