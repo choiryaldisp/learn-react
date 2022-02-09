@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { RootContext } from "./App";
+import RootContext from "./context/RootContext";
 
 class FirstCounter extends Component{
     render(){
