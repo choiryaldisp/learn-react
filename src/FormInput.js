@@ -23,10 +23,6 @@ const FormInput =(props)=>{
         setState({...state})
     }
 
-    const handleInput=(event)=>{
-        console.log("ON INPUT", event);
-    }
-
     const handleSubmit=(event)=>{
         props.dispatch({type: "ADD_TODO",newTodo: state.newTodo})
         event.preventDefault()
