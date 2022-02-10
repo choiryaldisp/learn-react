@@ -1,11 +1,13 @@
-import { useDispatch } from "react-redux"
-import ActionType from "../redux/ActionType"
+import { useContext } from "react";
+import { RootContext } from "../App";
+import ActionType from "../redux/ActionType";
 
 const ButtonIncrement = () =>{
-    const dispatch = useDispatch()
+    const data = useContext(RootContext)
     return(
         <>
-            <button onClick={()=>dispatch({type: ActionType.PLUS})}>+</button>
+            <h1>{data.nilai.nilai}</h1>
+            <button onClick={()=>data.dispatch({type: ActionType.PLUS})}>+</button>
         </>
     )
 }
