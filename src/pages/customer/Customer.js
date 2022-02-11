@@ -1,18 +1,17 @@
-import {useNavigate, useParams} from "react-router-dom";
-// import { withRouter } from "../../HOC/withRouter";
+import { Outlet, Route, Routes } from "react-router-dom"
+import { CustomerForm } from "./component/CustomerForm"
+import { CustomerList } from "./component/CustomerList"
 
 export const Customer = ()=>{
-    // const location = useLocation();
-    // console.log("LOCATION",location);
-    const params = useParams();
-    const navigate = useNavigate()
-    console.log("PARAMS",params);
+
     return(
-      <>
-      <h2>Customer</h2>
-      <h4>{params.name}</h4>
-      <button onClick={()=>navigate('form')}>Add Customer</button>
-      </>
+      <Routes>
+         <Route path='/' element={<Outlet/>}>
+          <Route index element={<CustomerList/>}></Route>
+          <Route path="form" element={<CustomerForm/>}/>
+          <Route path=':name' element={<CustomerList/>}/>
+        </Route>
+      </Routes>
     )
 }
 
