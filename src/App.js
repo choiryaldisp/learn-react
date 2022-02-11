@@ -1,61 +1,50 @@
 import './App.css'
-import logo from './logo.svg'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import ButtonIncrement from './component/ButtonIncrement';
-import { createContext, useReducer } from 'react';
-import ActionType from './redux/ActionType';
-
-export const RootContext = createContext()
-const initial = {nilai: 5}
-
-const reducer = (state, action) =>{
-  switch (action.type) {
-    case ActionType.PLUS:{
-        return{
-            ...state,
-            nilai: state.nilai+1
-        }
-    }
-    case ActionType.MINUS:{
-        if(state.nilai>0){
-            return{
-            
-                ...state,
-                nilai: state.nilai-1
-            }
-        }else{
-            return state
-        }   
-    }
-    case ActionType.ADD:{
-        return{
-            ...state,
-            todos: [...state.todos, {...action.payload}]
-        }
-    }
-    default: return state
-  }
-}
+import { BrowserRouter as Router, Link, Outlet, Route, Routes} from 'react-router-dom';
+import { Home } from './pages/home/Home';
+import { Product } from './pages/product/Product';
+import { Customer } from './pages/customer/Customer';
+import { ProductForm } from './pages/product/ProductForm';
+import { CustomerForm } from './pages/customer/CustomerForm';
+import { NotFoundPage } from './shared/PageNotFound';
 
 const App=()=>{
-  const[angka, dispatch] = useReducer(reducer, initial)
-  
-  const handleIncrement = (data) =>{
-    dispatch(data)
-  }
-
   return(
-    <RootContext.Provider value={{nilai: angka, dispatch: handleIncrement}}>
-      <div className='App'>
-        <header className='App-header'>
-          <img src={logo} className='App-logo' alt='logo'/>
-        </header>
-        <br/>
-        <ButtonIncrement/>
-      </div>
-    </RootContext.Provider>
-  );
+    <Router>
+      <nav>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <Link to="/products">Product</Link>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <Link to="/customers">Customer</Link>
+          </li>
+        </ul>
+      </nav>
 
+      {/* Configurasi */}
+      <Routes>
+        <Route path='/' element={<Home/>}/>
+        <Route path='products' element={<Outlet />}>
+          <Route index element={<Product/>}></Route>
+          <Route path="form" element={<ProductForm/>}/>
+        </Route>
+        <Route path='customers' element={<Outlet/>}>
+          <Route index element={<Customer/>}></Route>
+          <Route path=':name' element={<Customer/>}/>
+          <Route path="form" element={<CustomerForm/>}/>
+        </Route>
+        <Route path='*' element={<NotFoundPage/>}></Route>
+      </Routes>
+    </Router>
+  );
 }
 
 export default App;
