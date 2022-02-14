@@ -1,32 +1,18 @@
 // import axios from "axios"
-import { useEffect, useState } from "react"
+import { useEffect} from "react"
 import {useNavigate} from "react-router-dom"
-import { deleteProduct, getProducts } from "../service/ProductService"
 
-export const ProductList = ()=>{
-    const[list, setList] = useState([])
+export const ProductList = ({bloc})=>{
+    const {list, getListProducts, handleDelete} = bloc()
     const navigate = useNavigate()
 
     useEffect(()=>{
         getListProducts()
     },[])// array kosong untuk menghentikan re-render berulang-ulang
 
-    const getListProducts = async () =>{
-        try {
-            const response = await getProducts()
-            setList(response.data.products)
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    const handleDelete = async (data)=>{
-        try {
-            if(window.confirm(`Are you sure to delete ${data.name}`))
-            await deleteProduct(data.id)
-            await getListProducts()
-        } catch (error) {
-            console.log(error);
+    const deleteList = (data) =>{
+        if(window.confirm(`Are you sure to delete ${data.name}`)){
+            handleDelete(data)
         }
     }
 
@@ -51,7 +37,7 @@ export const ProductList = ()=>{
                             <td>{product.id}</td> 
                             <td>{product.name}</td> 
                             <td>
-                                <button className="btn btn-warning" onClick={()=>handleDelete(product)}>Delete</button>
+                                <button className="btn btn-warning" onClick={()=>deleteList(product)}>Delete</button>
                                 <button className="btn btn-primary" onClick={()=>navigate(`form/${product.id}`)}>Update</button>
                             </td>
                         </tr> 

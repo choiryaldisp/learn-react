@@ -1,18 +1,21 @@
-import axios from "axios";
 import { useFormik } from "formik";
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { createProduct, getProduct, updateProduct } from "../service/ProductService";
 import * as Yup from 'yup'
 
-export const ProductForm = () =>{
-    // const [newData, setNewData] = useState({})
-    const navigate = useNavigate()
+export const ProductForm = ({bloc}) =>{
+    const {
+        loading,
+        getDataById, 
+        handleUpdate,
+        handleSubmit
+    } = bloc()
+
     const param = useParams()
-    const [loading, setLoading] = useState(false)
+    const navigate = useNavigate()
 
     useEffect(()=>{
-        getDataById()
+        getDataById(param.id, formik)
     },[])
 
     const formik = useFormik({
@@ -26,52 +29,14 @@ export const ProductForm = () =>{
         }),
         onSubmit: () => {
             if(param.id){
-                handleUpdate()
+                handleUpdate(formik)
+                navigate("/products")
             }else{
-                handleSubmit()
+                handleSubmit(formik)
+                navigate("/products")
             }
         }
     })
-
-    const getDataById = async () =>{
-        if(param.id){
-            const response = await getProduct(param.id)
-            console.log("PARAM",response.data);
-            // setNewData(response.data)
-            formik.values.id = response.data.id
-            formik.values.name = response.data.name
-            formik.setFieldValue()
-        }
-    }
-
-    // const handleChange = (event) =>{
-    //     const id = event.target.id 
-    //     const value = event.target.value
-    //     newData[id] = value
-    //     setNewData({...newData});
-    // }
-
-    const handleUpdate = async(event) =>{
-        try {
-            setLoading(true)
-            await updateProduct(formik.values)
-            setLoading(false)
-            navigate("/products")
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    const handleSubmit = async (event) =>{
-        try {
-            setLoading(true)
-            await createProduct(formik.values)
-            setLoading(false)
-            navigate("/products")
-        } catch (error) {
-            console.log(error);
-        }
-    }
 
     return(
         <>
