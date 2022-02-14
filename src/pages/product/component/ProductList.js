@@ -1,4 +1,4 @@
-import axios from "axios"
+// import axios from "axios"
 import { useEffect, useState } from "react"
 import {useNavigate} from "react-router-dom"
 import { deleteProduct, getProducts } from "../service/ProductService"
@@ -34,7 +34,7 @@ export const ProductList = ()=>{
         <>
             <div className="container"> 
                 <h2>Product List</h2> 
-                <button type="button" className="btn btn-success" onClick={()=>navigate('input')}> Add Product </button> 
+                <button type="button" className="btn btn-success" onClick={()=>navigate('form')}> Add Product </button> 
                 <table className="table table-striped"> 
                     <thead> 
                         <tr> 
