@@ -6,13 +6,11 @@ import * as Yup from 'yup'
 export const ProductForm = ({bloc}) =>{
     const {
         loading,
+        param,
         getDataById, 
         handleUpdate,
         handleSubmit
     } = bloc()
-
-    const param = useParams()
-    const navigate = useNavigate()
 
     useEffect(()=>{
         getDataById(param.id, formik)
@@ -30,10 +28,10 @@ export const ProductForm = ({bloc}) =>{
         onSubmit: () => {
             if(param.id){
                 handleUpdate(formik)
-                navigate("/products")
+                // navigate("/products")
             }else{
                 handleSubmit(formik)
-                navigate("/products")
+                // navigate("/products")
             }
         }
     })

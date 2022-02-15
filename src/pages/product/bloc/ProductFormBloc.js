@@ -1,17 +1,15 @@
-import { useFormik } from "formik"
 import { useState } from "react"
-import { useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams} from "react-router-dom"
 
-import { createProduct, getProduct, updateProduct } from "../service/ProductService"
-
-const ProductFormBloc = () =>{
+const ProductFormBloc = (productService) =>{
+    const {getProduct, createProduct, updateProduct} = productService()
     const [loading, setLoading] = useState(false)
-    
+    const param = useParams()
     const navigate = useNavigate()
 
-    const getDataById = async (id, formik) =>{
-        if(id){
-            const response = await getProduct(id)
+    const getDataById = async (formik) =>{
+        if(param.id){
+            const response = await getProduct(param.id)
             formik.values.id = response.data.id
             formik.values.name = response.data.name
             formik.setFieldValue()
@@ -42,6 +40,7 @@ const ProductFormBloc = () =>{
 
     return{
         loading,
+        param,
         getDataById, 
         handleUpdate,
         handleSubmit
